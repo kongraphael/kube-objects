@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hellowcow-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: hellowcow
+      labels:
+        editor: vscode
+        app: hellowcow
+        env: staging
+    spec:
+      containers:
+      - name: hellocow
+        image: kongraphael/hellocow:1.0

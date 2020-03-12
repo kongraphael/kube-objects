@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+ name: hellocow-ingress
+spec:
+ rules:
+ - host: hellocow.staging.plumecorp.net
+   http:
+    paths:
+    - backend:
+      serviceName: hellocow-service-staging
+      servicePort: 8080
+ - host: hellocow.plumecorp.net
+   http:
+    paths:
+    - backend:
+      serviceName: hellocow-service-prod
+      servicePort: 8080

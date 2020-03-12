@@ -1,0 +1,13 @@
+bk-kind: Service
+apiVersion: v1
+metadata:
+  name:  hellocow-service-staging
+spec:
+  selector:
+    app: hellocow 
+    env: staging
+  type:  NodePort
+  ports:
+  - name:  hellocow-port
+    port:  80
+    targetPort:  8080

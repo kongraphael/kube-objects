@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name:  oneshot
+spec:
+  template:
+    metadata:
+      name:  oneshot
+    spec:
+      containers:
+       - name: oneshot
+         image: kongraphael/oneshot:1.0
+         args:
+         - "argument1"
+         - "argument2"
