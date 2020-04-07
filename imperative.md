@@ -36,7 +36,6 @@ You can then update the YAML file with the replicas or any other field before cr
 # Service
 ## Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379
 kubectl expose pod redis --port=6379 --name redis-service --dry-run -o yaml
-kubectl expose pod redis --port=6379 --name redis-service
 
 (This will automatically use the pod's labels as selectors)
 
@@ -56,3 +55,10 @@ kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run -o
 (This will not use the pods labels as selectors)
 
 Both the above commands have their own challenges. While one of it cannot accept a selector the other cannot accept a node port. I would recommend going with the `kubectl expose` command. If you need to specify a node port, generate a definition file using the same command and manually input the nodeport before creating the service
+
+
+## Configmap
+
+kubectl create configmap configFileName --from-literal=key=val --from-literal=key2=val2
+or
+kubectl create configmap configFileName --from-file=/path/to/file

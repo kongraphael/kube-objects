@@ -7,6 +7,10 @@ Labels are a way to filter objects
 The filter are done with selector
 ie : app=redis
 
+
+### HOW to list label ??
+Label are set on node, you have to use kubectl describe node nodeName to see the nodeName's labels
+
 ## Labels in pods
 In the yaml file, in the metadata section, add :
 metadata:
@@ -47,7 +51,7 @@ What happens to pod that do not tolerate the taint ?
 
  # Node selector
  Allow pod to be scheduled on particular node ;
- Label is applyed to node, and new attribute in spec section called nodeSelector muste be created 
+ Label is applyed to node, and new attribute in spec section called nodeSelector must be created 
  with the key=value that match the previous label
 
 Set the label on node :
@@ -66,7 +70,11 @@ Scheduled will place the pods on desired node
 NodeAffinity have quite complexe keys ;
 There is 2 keys that act on pods scheduling, and once the pod is running
 requiredDuringSchedulingIgnoredDuringExecution
+- the label is require on node just before the pod is scheduled. If there is no match, the pod will not be scheduled
+- the pod will still run on the node, even if the label is deleted once the pod is scheduled
 preferedDuringSchedulingIgnoredDuringExecution
+- the label is not require on node just before the pod is scheduled. It will be used, but if it not present, the pod will still be scheduled on node.
+- the pod will still run on the node, even if the label is deleted once the pod is scheduled
 
 See exemple below :
 under spec:
